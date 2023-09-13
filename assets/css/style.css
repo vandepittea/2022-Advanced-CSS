@@ -1,0 +1,67 @@
+:root{
+    --primary-color: hsl(120, 50%, 50%);
+    --primary-color-light: hsl(120, 50%, 70%);
+    --primary-color-dark: hsl(120, 50%, 30%);
+    --complement-color-dark: hsl(60, 50%, 30%);
+    --neutral-color: #fff;
+    --complement-neutral-color: #000;
+    --standard-font-size: 1rem;
+}
+body {
+    background-color: var(--neutral-color);
+    color: var(--complement-neutral-color);
+    font-size: var(--standard-font-size);
+    font-family: Arial, sans-serif;
+}
+h1, h2{
+    display: inline-block;
+    position: relative;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+}
+h1{
+    font-size: calc(var(--standard-font-size) * 2);
+}
+h2{
+    font-size: calc(var(--standard-font-size) * 1.5);
+}
+:is(h1,h2)::after{
+    content: "";
+    height: 0.5rem;
+    width: 100%;
+    display: inline-block;
+    background-color: var(--primary-color-dark);
+    position: absolute;
+    left: 0;
+    top: calc(var(--standard-font-size) * 2 + 0.2rem);
+}
+h2::after{
+    height: 0.3rem;
+    top: calc(var(--standard-font-size) * 1.5 + 0.2rem);
+}
+:is(h1, h2):hover::after{
+    background-color: var(--complement-color-dark);
+}
+p + h2{
+    margin-top: 2rem;
+}
+p::first-letter{
+    font-size: calc(var(--standard-font-size) * 2);
+}
+main{
+    display: flex;
+    flex-wrap: wrap;
+}
+article{
+    background-color: var(--primary-color-light);
+    width: calc(100% / 3 - 4rem);
+    margin-left: 2rem;
+    margin-right: 2rem;
+    padding-top: 0.5rem;
+}
+article :not(:is(h1, h2)){
+    padding: 0.5rem;
+}
+article:not(.irrelevant) p:not(.irrelevant){
+    font-weight: bold;
+}
